@@ -46,13 +46,13 @@ describe('MoviesService', () => {
         genres: ['test'],
         year: 2000,
       });
-      const movie = service.getOne('1');
+      const movie = service.getOne(1);
       expect(movie).toBeDefined();
       expect(movie.id).toEqual(1);
     });
     it('should return 404', () => {
       try {
-        service.getOne('999');
+        service.getOne(999);
       } catch (e) {
         expect(e).toBeInstanceOf(NotFoundException);
       }
@@ -67,13 +67,13 @@ describe('MoviesService', () => {
         year: 2000,
       });
       const beforeDelete = service.getAll();
-      service.deleteOne('1');
+      service.deleteOne(1);
       const afterDelete = service.getAll();
       expect(afterDelete.length).toEqual(beforeDelete.length - 1);
     });
     it('should return 404', () => {
       try {
-        service.deleteOne('219');
+        service.deleteOne(219);
       } catch (error) {
         expect(error).toBeInstanceOf(NotFoundException);
       }
@@ -87,13 +87,13 @@ describe('MoviesService', () => {
         genres: ['test'],
         year: 2000,
       });
-      service.update('1', { title: 'Updated text' });
-      const movie = service.getOne('1');
+      service.update(1, { title: 'Updated text' });
+      const movie = service.getOne(1);
       expect(movie.title).toEqual('Updated text');
     });
     it('should return 404', () => {
       try {
-        service.deleteOne('123');
+        service.deleteOne(123);
       } catch (error) {
         expect(error).toBeInstanceOf(NotFoundException);
       }
